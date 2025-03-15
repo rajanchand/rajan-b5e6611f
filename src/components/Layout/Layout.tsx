@@ -2,6 +2,7 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import TopFooter from "./TopFooter";
 import { motion } from "framer-motion";
 
 interface LayoutProps {
@@ -20,6 +21,7 @@ interface LayoutProps {
 export default function Layout({ children, sectionRefs }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
+      <TopFooter />
       <Header sectionRefs={sectionRefs} />
       <motion.main
         initial={{ opacity: 0 }}
