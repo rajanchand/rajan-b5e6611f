@@ -34,9 +34,9 @@ export default function TopFooter() {
   };
 
   return (
-    <div className="bg-secondary/50 border-b border-border py-2">
+    <div className="bg-secondary/50 border-b border-border/70 shadow-sm">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center py-2">
           {/* Date and Time */}
           <div className="text-sm text-muted-foreground mb-2 md:mb-0">
             <span className="font-medium">{formatDate(currentTime)}</span>
