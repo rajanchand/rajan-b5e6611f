@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navItems = [
   { id: "home", label: "Home" },
@@ -94,33 +95,39 @@ export default function Header({ sectionRefs }: HeaderProps) {
           <span className="ml-1">Chand</span>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.id);
-              }}
-              className={`nav-link ${
-                activeSection === item.id ? "active" : ""
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Desktop Navigation with Theme Toggle */}
+        <div className="hidden md:flex items-center">
+          <nav className="flex items-center space-x-1 mr-3">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                }}
+                className={`nav-link ${
+                  activeSection === item.id ? "active" : ""
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden icon-btn"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Menu Button and Theme Toggle */}
+        <div className="md:hidden flex items-center">
+          <ThemeToggle />
+          <button
+            className="ml-2 icon-btn"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
