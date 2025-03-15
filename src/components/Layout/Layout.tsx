@@ -1,21 +1,26 @@
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function Layout({ children }: { children: ReactNode }) {
-  const { pathname } = useLocation();
+interface LayoutProps {
+  children: ReactNode;
+  sectionRefs?: {
+    home: React.RefObject<HTMLDivElement>;
+    education: React.RefObject<HTMLDivElement>;
+    work: React.RefObject<HTMLDivElement>;
+    skills: React.RefObject<HTMLDivElement>;
+    about: React.RefObject<HTMLDivElement>;
+    contact: React.RefObject<HTMLDivElement>;
+    appointment: React.RefObject<HTMLDivElement>;
+  };
+}
 
-  // Scroll to top on route change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
+export default function Layout({ children, sectionRefs }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header sectionRefs={sectionRefs} />
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
