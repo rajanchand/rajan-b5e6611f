@@ -1,5 +1,9 @@
-import { useLocation } from "react-router-dom";
+
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, AlertTriangle } from "lucide-react";
+import Layout from "@/components/Layout/Layout";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,15 +16,31 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <Layout>
+      <div className="section min-h-[60vh] flex flex-col items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <div className="mx-auto w-24 h-24 rounded-full bg-secondary flex items-center justify-center mb-6">
+            <AlertTriangle size={40} className="text-primary" />
+          </div>
+          <h1 className="text-6xl font-bold mb-4">404</h1>
+          <p className="text-xl text-muted-foreground mb-8">
+            Oops! The page you're looking for doesn't exist.
+          </p>
+          <Link 
+            to="/" 
+            className="btn btn-primary inline-flex items-center gap-2"
+          >
+            <ArrowLeft size={18} />
+            <span>Return to Home</span>
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
